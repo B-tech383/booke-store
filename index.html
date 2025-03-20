@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Animation styles */
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Mobile menu transition */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.hidden {
+            transform: translateY(-10px);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Hamburger icon animation */
+        .hamburger {
+            width: 24px;
+            height: 18px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .hamburger-line {
+            background-color: #1D1D1D;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger-line:nth-child(1) {
+            top: 0;
+        }
+        
+        .hamburger-line:nth-child(2) {
+            top: 8px;
+        }
+        
+        .hamburger-line:nth-child(3) {
+            top: 16px;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+</head>
+    <style>
+        .testimonial-slide {
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .testimonial-container {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hide scrollbar */
+        .testimonial-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .testimonial-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Animation for dots */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .dot-active {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Dark mode styles */
+        .dark {
+            color-scheme: dark;
+        }
+        
+        .dark body {
+            background-color: #181818;
+            color: #f0f0f0;
+        }
+        
+        .avatar-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+<body class=" font-serif p-0 m-0" >
+    <div class="flex flex-col p-5 bg-[#FDF8EE]">
+            <script>
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            colors: {
+                                primary: '#FF7426',
+                                secondary: '#4D2C5E'
+                            }
+                        }
+                    }
+                }
+            </script>
+            
+        <div>
+            <!-- Navigation Container -->
+            <header class="w-full py-4 ">
+                <div class="lg:px-[5%] ">
+                    <!-- Main Navigation -->
+                    <div class="flex justify-between items-center">
+                        <!-- Logo -->
+                        <div class="slide-up " >
+                            <div class="h-20 w-32 rounded flex items-center md:-ml-10 ">
+                                <div class=""><img src="./images/Group 328.png" alt=""></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Navigation -->
+                        <ul class="slide-up font-extrabold gap-8 items-center list-none flex-wrap justify-center mt-0 lg:flex hidden">
+                            <li><a href="#" class="hover:text-primary text-[#1D1D1D] text-lg">Home</a></li>
+                            <li><a href="#" class="hover:text-primary text-[#1D1D1D] text-lg">About us</a></li>
+                            <li><a href="#" class="hover:text-primary text-[#1D1D1D] text-lg">Courses</a></li>
+                            <li><a href="#" class="hover:text-primary text-[#1D1D1D] text-lg">Our Services</a></li>
+                            <li><a href="#" class="hover:text-primary text-[#1D1D1D] text-lg">Contact us</a></li>
+                            <button class="bg-secondary text-white py-2 px-10 rounded-2xl text-lg hover:bg-primary transition duration-300 scale-90 hover:scale-100">Sign in</button>
+                        </ul>
+                        
+                        <!-- Mobile Menu Button -->
+                        <div class="slide-up lg:hidden">
+                            <div id="hamburgerBtn" class="hamburger">
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                                <span class="hamburger-line"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile Menu -->
+                    <div id="mobileMenu" class="mobile-menu bg-white py-4 mt-4 rounded-lg shadow-lg lg:hidden hidden">
+                        <ul class="flex flex-col space-y-4 font-extrabold">
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="hover:text-primary text-[#1D1D1D] text-sm block">Home</a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="hover:text-primary text-[#1D1D1D] text-sm block">About us</a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="hover:text-primary text-[#1D1D1D] text-sm block">Courses</a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="hover:text-primary text-[#1D1D1D] text-sm block">Our Services</a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="hover:text-primary text-[#1D1D1D] text-sm block">Contact us</a>
+                            </li>
+                            <li class="px-4 py-2">
+                                <button class="bg-secondary text-white py-2 px-10 rounded-2xl text-sm hover:bg-primary transition duration-300 w-full">Sign in</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+            <script>
+                // Mobile menu toggle
+                const hamburgerBtn = document.getElementById('hamburgerBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                
+                hamburgerBtn.addEventListener('click', () => {
+                    // Toggle the hamburger icon active state
+                    hamburgerBtn.classList.toggle('active');
+                    
+                    // Toggle the mobile menu visibility
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    const isClickInsideMenu = mobileMenu.contains(event.target);
+                    const isClickOnHamburger = hamburgerBtn.contains(event.target);
+                    
+                    if (!isClickInsideMenu && !isClickOnHamburger && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerBtn.classList.remove('active');
+                    }
+                });
+                
+                // Close menu when window is resized to desktop size
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024 && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        hamburgerBtn.classList.remove('active');
+                    }
+                });
+            </script>
+        </div>
+        <div class="lg:slide-up lg:flex items-center justify-center gap-[20%] ">
+            <div class="slide-up ">
+                <h1 class="text-[45px] font-bold">
+                    The <span class="text-[#FF7426]">Smart</span><br>Choice For <span class="text-[#FF7426]">Future</span>
+                </h1><br>
+                <p class="text-[#8A8A8A] text-[15px]">
+                    Elearn is a global training provider based across the UK that <br>
+                    specialises in accedited and bespoke training courses. we crush <br>
+                    the...
+                </p><br><br>
+                <div class="flex p-1 bg-white sm:w-max  rounded-3xl items-center md:justify-center w-[53%] ">
+                    <img src="./images/magnifying-glass 1 (1).png" alt="">
+                    <input class="rounded-3xl pr-7 w-[65%]" type="text" placeholder=" Search for a location..">
+                    <button class=" py-2 px-10 rounded-3xl text-white bg-[#4D2C5E] text-sm  hover:bg-[#FF7426] transition duration-300 scale-90 hover:scale-100 w-[28%]">Continue</button>
+                </div>
+            </div>
+            <div>
+                <img class="h-[400px] slide-up " src="./images/OBJECTS.png" alt="">
+            </div>
+        </div>
+     <section class="flex justify-center mt-20 ">
+        <div class="lg:flex  bg-[#4D2C5E] py-10 rounded-lg px-3 gap-5  w-max">
+            <div class="flex gap-5 slide-up">
+                <div class="h-max rounded-xl bg-[#FFFFFF33]">
+                    <img class="h-20 p-4" src="./images/online-test 1.png" alt="">
+                </div>
+                <div class=""> 
+                    <strong><h2 class="text-white">Learn The Latest Skills</h2></strong><br>
+                    <p class="text-[#8A8A8A] text-xs">
+                        contrary to popular belief, lorem ipsum is <br>
+                        not simply random text, it has roots in a <br>
+                        BC, making it over 2000 years old
+                    </p>
+                </div>
+            </div>
+            <div class="flex gap-5 slide-up">
+                <div class="h-max rounded-xl bg-[#FFFFFF33]">
+                    <img class="h-20 p-4" src="./images/exam 1.png" alt="">
+                </div>
+                <div class=""> 
+                    <strong><h2 class="text-white">Get Ready for Career</h2></strong><br>
+                    <p class="text-[#8A8A8A] text-xs">
+                        contrary to popular belief, lorem ipsum is <br>
+                        not simply random text, it has roots in a <br>
+                        BC, making it over 2000 years old
+                    </p>
+                </div>
+            </div>
+            <div class="flex gap-5 slide-up">
+                <div class="h-max rounded-xl bg-[#FFFFFF33]">
+                    <img class="h-20 p-4" src="./images/certification 1.png" alt="">
+                </div>
+                <div class=""> 
+                    <strong><h2 class="text-white">Earn Certificate</h2></strong><br>
+                    <p class="text-[#8A8A8A] text-xs">
+                        contrary to popular belief, lorem ipsum is <br>
+                        not simply random text, it has roots in a <br>
+                        BC, making it over 2000 years old
+                    </p>
+                </div>
+            </div>
+        </div>
+     </section>
+    </div>
+    <div class="m-[5%] flex justify-between items-center slide-up">
+        <img class="h-20 w-32" src="./images/casual-life-3d-idea-lamp 1.png" alt="">
+        <div class="text-center m-4">
+            <p class="text-3xl font-extrabold">Our Tracks</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </div>
+        <img class="h-26 w-28" src="./images/Group (7).png" alt="">
+    </div>
+    <section class="flex justify-center">
+        <div class="lg:flex justify-between  my-10 gap-[3%] " >
+            <div class=" flex flex-col justify-center pb-6 ">
+                <div class="p-2 py-2 bg-white shadow-xl w-max rounded-lg">
+                    <img class="h-[150px] slide-up" src="./images/Group 337.png" alt="">
+                    <div class="flex justify-between slide-up">
+                        <p class="text-xs text-[#ACACAC] ">UI/UX Design</p>
+                        <div class="flex slide-up">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/Vector (1).png" alt="">
+                        </div>
+                    </div>
+                    <strong class="slide-up">UI/UX Design for beginners <br><span class="text-[#FF7426]">$98</span></strong>
+                    <hr class="border-dashed slide-up"><br>
+                    <div class="text-xs flex gap-4 text-[#ACACAC] items-center ">
+                        <div class="flex  items-center">
+                            <img class="slide-up" src="./images/time-svgrepo-com 1.png" alt="">
+                            <p class="slide-up">22hr 30min</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/video-svgrepo-com 1.png" alt="">
+                            <p>34 courses</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/download-svgrepo-com 1.png" alt="">
+                            <p>250 courses</p>
+                        </div>
+                        
+                    </div>
+                    <div class="flex justify-center -mb-7">
+                        <button class="py-2 px-10 rounded-3xl bg-[#FF7426] text-white flex hover:bg-[#4D2C5E] transition duration-300 scale-90 hover:scale-100">Join now</button>
+                    </div>
+                </div>
+         
+            </div>
+            <div class=" flex flex-col justify-center pb-6">
+                <div class="p-2 py-2 bg-white shadow-xl w-max rounded-lg">
+                    <img class="h-[150px] " src="./images/Group 338.png" alt="">
+                    <div class="flex justify-between">
+                        <p class="text-xs text-[#ACACAC] ">UI/UX Design</p>
+                        <div class="flex">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/Vector (1).png" alt="">
+                        </div>
+                    </div>
+                    <strong class="">UI/UX Design for beginners <br><span class="text-[#FF7426]">$98</span></strong>
+                    <hr class="border-dashed"><br>
+                    <div class="text-xs flex gap-4 text-[#ACACAC] items-center ">
+                        <div class="flex  items-center">
+                            <img class="" src="./images/time-svgrepo-com 1.png" alt="">
+                            <p>22hr 30min</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/video-svgrepo-com 1.png" alt="">
+                            <p>34 courses</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/download-svgrepo-com 1.png" alt="">
+                            <p>250 courses</p>
+                        </div>
+                        
+                    </div>
+                    <div class="flex justify-center -mb-7">
+                        <button class="py-2 px-10 rounded-3xl bg-[#FF7426] text-white flex hover:bg-[#4D2C5E] transition duration-300 scale-90 hover:scale-100">Join now</button>
+                    </div>
+                </div>
+         
+            </div>
+         
+            
+            <div class=" flex flex-col justify-center pb-6">
+                <div class="p-2 py-2 bg-white shadow-xl w-max rounded-lg">
+                    <img class="h-[150px] " src="./images/Group 339.png" alt="">
+                    <div class="flex justify-between">
+                        <p class="text-xs text-[#ACACAC] ">UI/UX Design</p>
+                        <div class="flex">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/star-svgrepo-com (1) 5 (1).png" alt="">
+                            <img src="./images/Vector (1).png" alt="">
+                        </div>
+                    </div>
+                    <strong class="">UI/UX Design for beginners <br><span class="text-[#FF7426]">$98</span></strong>
+                    <hr class="border-dashed"><br>
+                    <div class="text-xs flex gap-4 text-[#ACACAC] items-center ">
+                        <div class="flex  items-center">
+                            <img class="" src="./images/time-svgrepo-com 1.png" alt="">
+                            <p>22hr 30min</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/video-svgrepo-com 1.png" alt="">
+                            <p>34 courses</p>
+                        </div>
+                        <div class="flex items-center ">
+                            <img src="./images/download-svgrepo-com 1.png" alt="">
+                            <p>250 courses</p>
+                        </div>
+                        
+                    </div>
+                    <div class="flex justify-center -mb-7">
+                        <button class="py-2 px-10 rounded-3xl bg-[#FF7426] text-white flex hover:bg-[#4D2C5E] transition duration-300 scale-90 hover:scale-100">Join now</button>
+                    </div>
+                </div>
+         
+            </div>
+            
+        </div>
+    </section>
+    <div class="lg:flex justify-between px-[20%] bg-[#FDF8EE] pt-10">
+        <img class="h-[400px] -mb-[5%] sm:pb-10"  src="./images/OBJECTS (1).png" alt="">
+        <div >
+            <h1 class="text-5xl font-bold">Premium <span class="text-[#FF7426]">Learning</span><br>Expirience</h1><br>
+            <div>
+                <div class="flex gap-5 items-center">
+                    <img class="bg-[#4D2C5E] p-3 rounded-[15px] h-14" src="./images/hearts 1.png" alt="">
+                    <div class="flex-col">
+                        <strong>Easily Accessible</strong><br>
+                        <p class="text-[#ACACAC] ">Leaarning will feel very comfortable with courslab</p>
+                    </div>
+                </div><br>
+                <div class="flex gap-5 items-center">
+                    <img class="bg-[#4D2C5E] p-3 rounded-[15px] h-14" src="./images/jigsaw 1 (1).png" alt="">
+                    <div class="flex-col">
+                        <strong>Fun learning expe</strong><br>
+                        <p class="text-[#ACACAC] ">Leaarning will feel very comfortable with courslab</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center m-4 mt-20">
+        <p class="text-3xl font-extrabold">What Student's Say</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    </div>
+    <div class="bg-white dark:bg-[#181818]  flex flex-col items-center justify-center transition-colors duration-300">
+        <div class="container mx-auto max-w-5xl">
+            <div class="relative testimonial-wrapper w-full">
+                <!-- Slider Container -->
+                <div id="testimonialContainer" class="testimonial-container relative flex overflow-x-hidden w-full">
+                    <div id="testimonialTrack" class="testimonial-track flex transition-transform duration-500 ease-in-out">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-slide w-full md:w-1/2 lg:w-1/3 p-4 flex-shrink-0 my-5 mx-4">
+                            <div class="px-2 shadow-xl p-6 bg-white dark:bg-gray-800  rounded-lg h-full">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholder mr-3"><img src="./images/Ellipse 34 (1).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Finlay Kirk</p>
+                                        <p class="text-xs text-gray-400">Web Developer</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "Teaching of the great explore of truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, pleasure itself."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★★</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-slide p-4 w-full md:w-1/2 lg:w-1/3 flex-shrink-0   my-5 mx-0 ">
+                            <div class="p-6 bg-white dark:bg-gray-800 shadow-xl px-2 rounded-lg h-full">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholdermr-3"><img src="./images/Ellipse 34 (2).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Dennatte P. Cervantes</p>
+                                        <p class="text-xs text-gray-400">Web Designer</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "Complete account of the system and expound the actual contrary to popular belief, lorem ipsum is not simply random text, it has roots."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-slide w-full p-4 md:w-1/2  my-5 mx-0 lg:w-1/3 flex-shrink-0">
+                            <div class="p-6 bg-white dark:bg-gray-800 shadow-xl rounded-lg  px-2 h-full">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholder  mr-3"><img src="./images/Ellipse 34 (2).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Jessica Martinez</p>
+                                        <p class="text-xs text-gray-400">UX Designer</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using content that makes it look like readable English."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★★</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-slide  p-4 my-5 mx-0 w-full md:w-1/2 lg:w-1/3 flex-shrink-0 ">
+                            <div class="p-6 bg-white dark:bg-gray-800 shadow-xl px-2 rounded-lg h-full">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholder  mr-3"><img src="./images/Ellipse 34 (2).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Robert Thompson</p>
+                                        <p class="text-xs text-gray-400">Marketing Specialist</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search will uncover many websites."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 5 -->
+                        <div class="testimonial-slide p-4 w-full my-5 mx-0 md:w-1/2 lg:w-1/3 flex-shrink-0 ">
+                            <div class="p-6 bg-white dark:bg-gray-800 shadow-xl rounded-lg h-full px-2">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholder  mr-3"><img src="./images/Ellipse 34 (2).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Amelia Parker</p>
+                                        <p class="text-xs text-gray-400">Product Manager</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★★</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 6 -->
+                        <div class="testimonial-slide p-4 w-full my-5 mx-0 md:w-1/2 lg:w-1/3 flex-shrink-0 ">
+                            <div class="p-6 bg-white dark:bg-gray-800 shadow-xl rounded-lg h-full px-2">
+                                <div class="flex items-center mb-2">
+                                    <div class="avatar-placeholder  mr-3"><img src="./images/Ellipse 34 (2).png" alt="" class="w-8 h-8 rounded-full"></div>
+                                    <div>
+                                        <p class="font-bold">Michael Scott</p>
+                                        <p class="text-xs text-gray-400">Regional Manager</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC."
+                                </p>
+                                <div class="mt-4 text-primary">
+                                    <span class="text-lg">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button id="prevBtn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                
+                <button id="nextBtn" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg z-10 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Slider Dots/Indicators -->
+            <div id="sliderDots" class="flex justify-center mt-6 gap-2">
+                <!-- Dots will be dynamically generated -->
+            </div>
+            
+            <!-- Auto Play Controls -->
+            <div class="flex justify-center mt-4">
+                <button id="playPauseBtn" class="flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 font-semibold transition-all">
+                    <span id="playPauseIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </span>
+                    <span id="playPauseText">Pause</span>
+                </button>
+            </div>
+        </div>
+    
+        <script>
+            // Check for dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+            
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            });
+    
+            // Testimonial Slider Logic
+            const testimonialTrack = document.getElementById('testimonialTrack');
+            const testimonialContainer = document.getElementById('testimonialContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const sliderDots = document.getElementById('sliderDots');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playPauseIcon = document.getElementById('playPauseIcon');
+            const playPauseText = document.getElementById('playPauseText');
+    
+            let slides = document.querySelectorAll('.testimonial-slide');
+            let currentIndex = 0;
+            let slidesPerView = getSlidesPerView();
+            let totalSlides = slides.length;
+            let slideWidth = 100 / slidesPerView;
+            let autoPlayInterval;
+            let isPlaying = true;
+            
+            // Initialize slider
+            function initSlider() {
+                // Set widths based on slides per view
+                slidesPerView = getSlidesPerView();
+                slideWidth = 100 / slidesPerView;
+                
+                slides.forEach(slide => {
+                    slide.style.width = `${slideWidth}%`;
+                });
+                
+                // Create indicator dots
+                createDots();
+                
+                // Set initial position
+                goToSlide(currentIndex);
+                
+                // Start autoplay
+                startAutoPlay();
+                
+                // Pause on hover
+                testimonialContainer.addEventListener('mouseenter', pauseAutoPlay);
+                testimonialContainer.addEventListener('mouseleave', resumeAutoPlay);
+            }
+            
+            // Get number of slides to show based on screen width
+            function getSlidesPerView() {
+                if (window.innerWidth < 768) {
+                    return 1;
+                } else if (window.innerWidth < 1024) {
+                    return 2;
+                } else {
+                    return 3;
+                }
+            }
+            
+            // Create dots for navigation
+            function createDots() {
+                sliderDots.innerHTML = '';
+                
+                // Calculate how many dots we need based on actual viewable pages
+                const numDots = Math.ceil(totalSlides / slidesPerView);
+                
+                for (let i = 0; i < numDots; i++) {
+                    const dot = document.createElement('button');
+                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'bg-gray-300', 'dark:bg-gray-600', 'hover:bg-primary', 'dark:hover:bg-primary', 'focus:outline-none', 'transition-colors');
+                    
+                    if (i === 0) {
+                        dot.classList.add('bg-primary', 'dark:bg-primary', 'dot-active');
+                    }
+                    
+                    dot.addEventListener('click', () => {
+                        goToSlide(i * slidesPerView);
+                        updateDots();
+                    });
+                    
+                    sliderDots.appendChild(dot);
+                }
+            }
+            
+            // Update active dot
+            function updateDots() {
+                const dots = sliderDots.querySelectorAll('button');
+                const activeDotIndex = Math.floor(currentIndex / slidesPerView);
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.remove('bg-primary', 'dark:bg-primary', 'dot-active');
+                    dot.classList.add('bg-gray-300', 'dark:bg-gray-600');
+                    
+                    if (index === activeDotIndex) {
+                        dot.classList.remove('bg-gray-300', 'dark:bg-gray-600');
+                        dot.classList.add('bg-primary', 'dark:bg-primary', 'dot-active');
+                    }
+                });
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                // Ensure index is valid
+                if (index < 0) {
+                    index = totalSlides - slidesPerView;
+                } else if (index >= totalSlides) {
+                    index = 0;
+                }
+                
+                currentIndex = index;
+                const offset = currentIndex * -slideWidth;
+                testimonialTrack.style.transform = `translateX(${offset}%)`;
+                updateDots();
+            }
+            
+            // Next slide
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+            
+            // Auto play functions
+            function startAutoPlay() {
+                if (!autoPlayInterval) {
+                    autoPlayInterval = setInterval(nextSlide, 5000);
+                    isPlaying = true;
+                    updatePlayPauseButton();
+                }
+            }
+            
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
+                isPlaying = false;
+                updatePlayPauseButton();
+            }
+            
+            function pauseAutoPlay() {
+                if (isPlaying) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+               
+                }
+            }
+            
+            function resumeAutoPlay() {
+                if (isPlaying && !autoPlayInterval) {
+                    autoPlayInterval = setInterval(nextSlide, 5000);
+                }
+            }
+            
+            function toggleAutoPlay() {
+                if (isPlaying) {
+                    stopAutoPlay();
+                } else {
+                    startAutoPlay();
+                }
+            }
+            
+            function updatePlayPauseButton() {
+                if (isPlaying) {
+                    playPauseIcon.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    `;
+                    playPauseText.textContent = 'Pause';
+                } else {
+                    playPauseIcon.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    `;
+                    playPauseText.textContent = 'Play';
+                }
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                
+                // Reset timer when manually changing slides
+                if (isPlaying) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = setInterval(nextSlide, 3000);
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                
+                // Reset timer when manually changing slides
+                if (isPlaying) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = setInterval(nextSlide, 3000);
+                }
+            });
+            
+            playPauseBtn.addEventListener('click', toggleAutoPlay);
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newSlidesPerView = getSlidesPerView();
+                
+                if (newSlidesPerView !== slidesPerView) {
+                    slidesPerView = newSlidesPerView;
+                    slideWidth = 100 / slidesPerView;
+                    
+                    slides.forEach(slide => {
+                        slide.style.width = `${slideWidth}%`;
+                    });
+                    
+                    // Re-calculate position and update dots
+                    createDots();
+                    goToSlide(Math.min(currentIndex, totalSlides - slidesPerView));
+                }
+            });
+            
+            // Initialize the slider
+            initSlider();
+        </script>
+        </div>
+    <div class="m-[5%] flex justify-between items-center">
+        <img class="h-26 w-32" src="./images/Group (11).png" alt="">
+        <img class="h-4" src="./images/Group 76.png" alt="">
+        <img class="h-10" src="./images/casual-life-3d-orange-planet-with-disk 1.png" alt="">
+    </div>
+    <div class="text-center m-4">
+        <p class="text-3xl font-extrabold">Our Tracks</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    </div>
+  <section class="flex justify-center">
+    <div class="lg:flex  lg:justify-between lg:px-[15%] gap-3" >
+        <div class="p-2 bg-white shadow-xl rounded-lg mb-5">
+            <img class="h-[150px] " src="./images/Group 337 (1).png" alt="">
+            <strong>Matthew E.McNatt</strong>
+            <p class="text-xs text-[#ACACAC] ">Professor @Anchie Brandon <br><br>
+                Lorem ipsum dolor sit amet consectetur <br>
+                adipisicing elit. Dolores eius, in <br>
+                explicabo veniam consequuntur. <br><br>
+                <div class="flex justify-between text-xs">
+                    <p class="text-[#FF7426]">Computer Engineering</p>
+                    <div class="flex gap-2">
+                        <img src="./images/Instagram_logo_2016 1.png" alt="">
+                        <img src="./images/174857 1.png" alt="">
+                    </div>
+                </div>
+            </p>
+
+        </div>
+        <div class="p-2 bg-white shadow-xl rounded-lg mb-5">
+            <img class="h-[150px] " src="./images/Group 338 (1).png" alt="">
+            <strong>Cynthia A.Nelson</strong>
+            <p class="text-xs text-[#ACACAC] ">Professor @Anchie Brandon <br><br>
+                Lorem ipsum dolor sit amet consectetur <br>
+                adipisicing elit. Dolores eius, in <br>
+                explicabo veniam consequuntur. <br><br>
+                <div class="flex justify-between text-xs">
+                    <p class="text-[#FF7426]">Computer Engineering</p>
+                    <div class="flex gap-2">
+                        <img src="./images/Instagram_logo_2016 1.png" alt="">
+                        <img src="./images/174857 1.png" alt="">
+                    </div>
+                </div>
+            </p>
+
+        </div>
+        <div class="p-2 bg-white shadow-xl rounded-lg mb-5">
+            <img class="h-[150px] " src="./images/Group 339 (1).png" alt="">
+            <strong>Tracy D.Wright</strong>
+            <p class="text-xs text-[#ACACAC] ">Professor @Anchie Brandon <br><br>
+                Lorem ipsum dolor sit amet consectetur <br>
+                adipisicing elit. Dolores eius, in <br>
+                explicabo veniam consequuntur. <br><br>
+                <div class="flex justify-between text-xs">
+                    <p class="text-[#FF7426]">Computer Engineering</p>
+                    <div class="flex gap-2">
+                        <img src="./images/Instagram_logo_2016 1.png" alt="">
+                        <img src="./images/174857 1.png" alt="">
+                    </div>
+                </div>
+            </p>
+
+        </div>
+        
+    </div>
+  </section>
+   
+<div class="flex justify-center">
+    <div class="bg-[#4D2C5E]  w-[60%] my-14 rounded-md text-white sm:flex-col">
+        <div class="py-5 text-center">
+            <h2 class="font-extrabold text-[30px]">Subscribe to our newsletter</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div class="flex text-black justify-center">
+                <div class="flex p-1 bg-white  rounded-3xl w-[60%] justify-between">
+                    <input class="rounded-3xl w-[70%]" type="email" placeholder="Email Address">
+                    <button class=" py-2  rounded-3xl bg-[#FF7426]  hover:bg-[#4D2C5E] transition duration-300 scale-90 hover:scale-100 hover:text-white w-[30%]">send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="flex justify-center ">
+    
+<div class="lg:flex  p-5 bg-[#FDF8EE] w-[100%] justify-between text-center">
+    <div class="mb-5">
+        <div class="flex justify-center">
+            <img src="./images/Group 356.png" alt="">
+        </div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur <br>
+            adipisicing elit. Iusto et expedita, <br>
+            beatae officiis amet veniam corrupti <br> 
+            consequatur itaque soluta odit?
+        </p>
+    </div>
+    <div class="p-5">
+        <strong>Company</strong>
+        <p>
+            About Us<br>
+            How to Work <br>
+            Popular Course<br> 
+            Services
+        </p>
+    </div>
+    <div class="p-5">
+        <strong>Contact Info</strong>
+        <p>
+            FAQ<br>
+            Help Center<br>
+            CAreer<br> 
+            Privacy
+        </p>
+    </div>
+    <div class="p-5">
+        <strong>Support</strong>
+        <p>
+            FAQ<br>
+            Help Center<br>
+            Career<br> 
+            Services
+        </p>
+    </div>
+    <div class="p-5">
+        <strong>Contact Info</strong>
+        <p>
+            +235 679871130<br>
+            Anchie Brandon383@gmail.com <br>
+            Elegance Junction Bambili<br> 
+            else upstation
+        </p>
+    </div>
+</div>
+
+</section>
+<script src="./script.js"></script>
+</body>
+</html>
